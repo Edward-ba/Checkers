@@ -1,5 +1,6 @@
 package com.company;
 import java.lang.*;
+import java.util.*;
 
 public class Board {
     final int size = 8;
@@ -136,9 +137,9 @@ public class Board {
             }
         }
         if (grid[c1.r][c1.c] == kingOfThisPiece) {
-            if (Math.abs(c1.r - c2.r)== Math.abs(c1.c - c2.c)) {
+            if (Math.abs(c1.r - c2.r) == Math.abs(c1.c - c2.c)) {
                 grid[c1.r][c1.c] = BoardPiece.Empty;
-                grid[c2.r][c2.c] = thisPiece;
+                grid[c2.r][c2.c] = kingOfThisPiece;
                 for (int i = 0; i < size; ++i) {
                     if (grid[0][i] == BoardPiece.Black)
                         grid[0][i] = BoardPiece.BlackKing;

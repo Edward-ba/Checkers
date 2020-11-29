@@ -1,5 +1,6 @@
 package com.company;
 import java.lang.*;
+import java.util.*;
 
 public class Game {
     Board  board = new Board();
@@ -16,7 +17,6 @@ public class Game {
         Player curPlayer = pb;
         System.out.println("1. This is checkers.");
         System.out.println("2. Black goes first.");
-        System.out.println("3. When you reach the end of the board you don't get a king for that is not implemented (yet).");
         System.out.println("4. The only way to win is by killing all of the other persons pieces.");
 
         while (!board.checkWinner()) {
