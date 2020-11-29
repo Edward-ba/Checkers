@@ -6,13 +6,15 @@ public class Player {
     private final PlayerType playerType;
     final Scanner scanner = new Scanner(System.in);
 
-    int[] readInts(String message) {
-        System.out.println(message);
+    int[] readInts() {
+        System.out.print("Put in your input as curRow, curCol, newRow, newCol. ");
+        System.out.println("Eg. is you want to move your piece from 5, 0 to 4, 1 then you would put in (5, 0, 4, 1)");
         int[] ret = new int[4];
 
         try {
             String string = scanner.nextLine();
-            String[] res = string.split(", ");
+            string = string.replaceAll("\\s", "");
+            String[] res = string.split(",");
             for (int i = 0; i < 4; ++i)
                 ret[i] = Integer.parseInt(res[i]);
             return ret;
@@ -38,7 +40,7 @@ public class Player {
         Coordinates c1 = new Coordinates();
         Coordinates c2 = new Coordinates();
 
-        int[] array = readInts("please enter your inputs as: row of piece, col of piece, row of  place you want to move piece, col of  place you want to move piece");
+        int[] array = readInts();
         c1.r = array[0];
         c1.c = array[1];
         c2.r = array[2];
