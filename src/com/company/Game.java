@@ -11,8 +11,7 @@ public class Game {
         this.pw = pw;
     }
 
-    public void play()
-    {
+    public void play() {
         Player curPlayer = pb;
         System.out.println("1. This is checkers.");
         System.out.println("2. Black goes first.");

@@ -4,18 +4,17 @@ import java.lang.*;
 public class Board {
     final int size = 8;
 
-    public enum BoardPiece
-    {
+    public enum BoardPiece {
         Empty {
             public String toString() { return " "; }
         },
-        White{
+        White {
             public String toString() { return "w"; }
         },
-        Black{
+        Black {
             public String toString() { return "b"; }
         },
-        WhiteKing{
+        WhiteKing {
             public String toString() { return "W"; }
         },
         BlackKing{
@@ -171,7 +170,6 @@ public class Board {
                 }
                 return true;
             }
-
         }
         return false;
     }
