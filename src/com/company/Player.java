@@ -46,8 +46,7 @@ public class Player {
         c2.r = array[2];
         c2.c = array[3];
 
-        boolean check = board.move(c1, c2, player);
-        if (!check) {
+        if (!board.move(c1, c2, player)) {
             System.out.println("that doesn't work try again");
             move(board, player);
         }

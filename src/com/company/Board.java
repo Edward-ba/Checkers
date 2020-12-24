@@ -78,7 +78,6 @@ public class Board {
         BoardPiece otherPiece = (player.getPlayerType() == Player.PlayerType.Black) ? BoardPiece.White : BoardPiece.Black;
         BoardPiece kingOfOtherPiece = (player.getPlayerType() == Player.PlayerType.Black) ? BoardPiece.WhiteKing : BoardPiece.BlackKing;
 
-
         if ((c1.r < 0) ||
                 (c1.c < 0) ||
                 (c1.r > size - 1) ||
