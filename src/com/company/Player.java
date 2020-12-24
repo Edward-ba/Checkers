@@ -45,13 +45,15 @@ public class Player {
         Coordinates c1 = new Coordinates();
         Coordinates c2 = new Coordinates();
 
-        int[] array = readInts(); // take the array of ints and put them into the coordinates
+        // take the array of ints and put them into the coordinates
+        int[] array = readInts();
         c1.r = array[0];
         c1.c = array[1];
         c2.r = array[2];
         c2.c = array[3];
 
-        if (!board.move(c1, c2, player)) { // check if the moving of the piece works if not try again
+        // check if the moving of the piece works if not try again
+        if (!board.move(c1, c2, player)) {
             System.out.println("that doesn't work try again");
             move(board, player);
         }

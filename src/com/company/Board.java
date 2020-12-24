@@ -80,7 +80,7 @@ public class Board {
      * @param c1 starting coordinates
      * @param c2 end coordinates
      * @param player which player is moving the pieces
-     * @return
+     * @return true if it works
      */
     public boolean move(Coordinates c1, Coordinates c2, Player player) {
         // takes the player and gets the piece types that they own
@@ -153,6 +153,7 @@ public class Board {
         }
         // checking if instead of a normal piece on the starting piece and there is a king there
         if (grid[c1.r][c1.c] == kingOfThisPiece) {
+            // moving around the board
             if (Math.abs(c1.r - c2.r) == Math.abs(c1.c - c2.c)) {
                 grid[c1.r][c1.c] = BoardPiece.Empty;
                 grid[c2.r][c2.c] = kingOfThisPiece;
@@ -164,6 +165,7 @@ public class Board {
                 }
                 return true;
             }
+            // killing enemy pieces
             else if (c1.r - 2 == c2.r && c1.c - 2 == c2.c && (grid[c1.r - 1][c1.c - 1] == otherPiece || grid[c1.r - 1][c1.c - 1] == kingOfOtherPiece)) {
                 grid[c1.r][c1.c] = BoardPiece.Empty;
                 grid[c1.r - 1][c1.c - 1] = BoardPiece.Empty;
@@ -195,6 +197,7 @@ public class Board {
     public boolean checkWinner() {
         boolean white = false;
         boolean black = false;
+        // check if no more pieces are left of either black or white
         for (int i = 0; i < size; ++i) {
             for (int j = 0; j < size; ++j) {
                 if (grid[i][j] == BoardPiece.White || grid[i][j] == BoardPiece.WhiteKing)
@@ -203,10 +206,12 @@ public class Board {
                     black = true;
             }
         }
+        // if there aren't any white pieces left the black wins
         if (!white) {
             System.out.println("Black wins");
             return true;
         }
+        // if there aren't any black pieces left white wins
         else if (!black) {
             System.out.println("White wins");
             return true;
