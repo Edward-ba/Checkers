@@ -10,7 +10,7 @@ abstract public class Token {
         this.type = type;
     }
 
-    public abstract boolean move();
+    public abstract boolean move(Coordinates beg, Coordinates end);
     public abstract String print();
 
     public Player.PlayerType getPlayerType()

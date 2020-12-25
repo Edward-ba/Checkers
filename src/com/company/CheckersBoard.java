@@ -2,7 +2,7 @@ package com.company;
 
 public class CheckersBoard {
     final int size = 8;
-    final private Token[][] grid = new Token[size][size];
+    final public Token[][] grid = new Token[size][size];
 
     CheckersBoard() {
         // when the board is created reset the board
@@ -58,5 +58,22 @@ public class CheckersBoard {
                     grid[i][j] = null;
             }
         }
+    }
+
+    public boolean move(Coordinates beg, Coordinates end, Player player) {
+        if ((beg.r < 0) ||
+                (beg.c < 0) ||
+                (beg.r > size - 1) ||
+                (beg.c > size - 1) ||
+                (end.r < 0) ||
+                (end.c < 0) ||
+                (end.r > size - 1) ||
+                (end.c > size - 1) ||
+                (grid[beg.r][beg.c] == null) ||
+                (grid[beg.r][beg.c].type != player.getPlayerType()) ||
+                (grid[end.r][end.c] != null))
+            return false;
+
+        return true;
     }
 }
