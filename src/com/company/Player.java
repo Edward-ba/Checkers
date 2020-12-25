@@ -41,16 +41,12 @@ public class Player {
      * @param board the board itself
      * @param player what player it is
      */
-    public void move(Board board, Player player) {
-        Coordinates c1 = new Coordinates();
-        Coordinates c2 = new Coordinates();
+    public void move(CheckersBoard board, Player player) {
 
         // take the array of ints and put them into the coordinates
         int[] array = readInts();
-        c1.r = array[0];
-        c1.c = array[1];
-        c2.r = array[2];
-        c2.c = array[3];
+        Coordinates c1 = new Coordinates(array[0], array[1]);
+        Coordinates c2 = new Coordinates(array[2], array[3]);
 
         // check if the moving of the piece works if not try again
         if (!board.move(c1, c2, player)) {

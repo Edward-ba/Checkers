@@ -2,7 +2,7 @@ package com.company;
 import java.lang.*;
 
 public class Game {
-    Board  board = new Board();
+    CheckersBoard  board = new CheckersBoard();
     Player pb;
     Player pw;
 

@@ -60,6 +60,11 @@ public class CheckersBoard {
         }
     }
 
+    public boolean checkWinner() {
+        return false;
+    }
+
+
     public boolean move(Coordinates beg, Coordinates end, Player player) {
         if ((beg.r < 0) ||
                 (beg.c < 0) ||
@@ -73,6 +78,8 @@ public class CheckersBoard {
                 (grid[beg.r][beg.c].type != player.getPlayerType()) ||
                 (grid[end.r][end.c] != null))
             return false;
+
+        grid[beg.r][beg.c].move(beg, end);
 
         return true;
     }
