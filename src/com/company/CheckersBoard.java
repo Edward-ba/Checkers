@@ -104,6 +104,7 @@ public class CheckersBoard {
 
 
     public boolean move(Coordinates beg, Coordinates end, Player player) {
+        // checks for most errors
         if ((beg.r < 0) ||
                 (beg.c < 0) ||
                 (beg.r > size - 1) ||

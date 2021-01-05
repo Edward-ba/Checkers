@@ -1,6 +1,8 @@
 package com.company;
 import java.lang.*;
+import java.util.*;
 
+// no longer use this class
 public class Board {
     final int size = 8;
 
@@ -24,6 +26,7 @@ public class Board {
 
     final private BoardPiece[][] grid = new BoardPiece[size][size];
 
+    // constructor
     Board() {
         // when the board is created reset the board
         resetBoard();
@@ -193,5 +196,4 @@ public class Board {
         }
         return false;
     }
-
 }

@@ -39,11 +39,9 @@ public class Pawn extends Token {
         if (Math.abs(beg.c - end.c) == 2 &&
                 Math.abs(beg.r - end.r) == 2 &&
                 board.grid[mid.r][mid.c].getPlayerType() == otherPlayerType) {
-
             // Check White pawns are are going south and black players are going north
             if ((beg.r < end.r && thisPlayerType == Player.PlayerType.White) ||
-                    (beg.r > end.r && thisPlayerType == Player.PlayerType.Black))
-            {
+                    (beg.r > end.r && thisPlayerType == Player.PlayerType.Black)) {
                 board.grid[end.r][end.c] = board.grid[beg.r][beg.c];
                 board.grid[beg.r][beg.c] = null;
                 board.grid[mid.r][mid.c] = null;

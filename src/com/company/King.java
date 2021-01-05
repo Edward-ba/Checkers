@@ -6,17 +6,17 @@ public class King extends Token {
         super(board, type);
     }
 
-    /**
-     *
-     * @param beg
-     * @param end
-     * @return
+    /***
+     * Move & Kill logic for king
+     * @param beg begin location
+     * @param end end location
+     * @return Whether or not it works
      */
     @Override
     public boolean move(Coordinates beg, Coordinates end) {
         Player.PlayerType thisPlayerType = board.grid[beg.r][beg.c].getPlayerType();
         Player.PlayerType otherPlayerType = board.grid[beg.r][beg.c].getPlayerType();
-        // row and col value must change by one
+        // simple move
         if (Math.abs(beg.c - end.c) == 1 || Math.abs(beg.r - beg.c) == 1) {
             board.grid[end.r][end.c] = board.grid[beg.r][beg.c];
             board.grid[beg.r][beg.c] = null;
@@ -28,7 +28,6 @@ public class King extends Token {
         if (Math.abs(beg.c - end.c) == 2 &&
                 Math.abs(beg.r - end.r) == 2 &&
                 board.grid[mid.r][mid.c].getPlayerType() == otherPlayerType) {
-
             // Check White pawns are are going south and black players are going north
             board.grid[end.r][end.c] = board.grid[beg.r][beg.c];
             board.grid[beg.r][beg.c] = null;
