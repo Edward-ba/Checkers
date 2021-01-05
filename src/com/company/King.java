@@ -7,56 +7,50 @@ public class King extends Token {
     }
 
     @Override
-    public boolean move(Coordinates beg, Coordinates end)
-    {
-
-        // make sure pawn cannot move backwards and col value must change by one
-        if (Math.abs(beg.c - end.c) != Math.abs(beg.r - beg.c))
-            return false;
-
-        if (beg.r > end.r && beg.c > end.c) {
-            for (int i = beg.r; i > end.r;) {
-                for (int j = beg.c; j > end.c; --i, --j) {
-                    if (board.grid[i][j] != null) {
-                        return false;
-                    }
-                }
+    public boolean move(Coordinates beg, Coordinates end) {
+        Player.PlayerType thisPlayerType = board.grid[beg.r][beg.c].getPlayerType();
+        Player.PlayerType otherPlayerType = board.grid[beg.r][beg.c].getPlayerType();
+        // row and col value must change by one
+        if (Math.abs(beg.c - end.c) == 1 || Math.abs(beg.r - beg.c) == 1) {
+            board.grid[end.r][end.c] = board.grid[beg.r][beg.c];
+            board.grid[beg.r][beg.c] = null;
+            return true;
+        }
+        else if (Math.abs(beg.c - end.c) == 2 || Math.abs(beg.r - beg.c) == 2) {
+            if (beg.c < end.c &&
+                    beg.r < end.r &&
+                    board.grid[beg.r - 1][beg.c - 1].getPlayerType() == otherPlayerType) {
+                board.grid[end.r][end.c] = board.grid[beg.r][beg.c];
+                board.grid[beg.r][beg.c] = null;
+                board.grid[beg.r - 1][beg.c - 1] = null;
+                return true;
+            }
+            else if (beg.c < end.c &&
+                    beg.r > end.r &&
+                    board.grid[beg.r + 1][beg.c - 1].getPlayerType() == otherPlayerType) {
+                board.grid[end.r][end.c] = board.grid[beg.r][beg.c];
+                board.grid[beg.r][beg.c] = null;
+                board.grid[beg.r - 1][beg.c - 1] = null;
+                return true;
+            }
+            else if (beg.c > end.c &&
+                    beg.r < end.r &&
+                    board.grid[beg.r - 1][beg.c + 1].getPlayerType() == otherPlayerType) {
+                board.grid[end.r][end.c] = board.grid[beg.r][beg.c];
+                board.grid[beg.r][beg.c] = null;
+                board.grid[beg.r - 1][beg.c - 1] = null;
+                return true;
+            }
+            else if (beg.c > end.c &&
+                    beg.r > end.r &&
+                    board.grid[beg.r + 1][beg.c + 1].getPlayerType() == otherPlayerType) {
+                board.grid[end.r][end.c] = board.grid[beg.r][beg.c];
+                board.grid[beg.r][beg.c] = null;
+                board.grid[beg.r - 1][beg.c - 1] = null;
+                return true;
             }
         }
-
-        if (beg.r > end.r && beg.c < end.c) {
-            for (int i = beg.r; i > end.r;) {
-                for (int j = beg.c; j < end.c; --i, ++j) {
-                    if (board.grid[i][j] != null) {
-                        return false;
-                    }
-                }
-            }
-        }
-
-        if (beg.r < end.r && beg.c > end.c) {
-            for (int i = beg.r; i < end.r;) {
-                for (int j = beg.c; j > end.c; ++i, --j) {
-                    if (board.grid[i][j] != null) {
-                        return false;
-                    }
-                }
-            }
-        }
-
-        if (beg.r < end.r && beg.c < end.c) {
-            for (int i = beg.r; i < end.r;) {
-                for (int j = beg.c; j < end.c; ++i, ++j) {
-                    if (board.grid[i][j] != null) {
-                        return false;
-                    }
-                }
-            }
-        }
-
-        board.grid[end.r][end.c] = board.grid[beg.r][beg.c];
-        board.grid[beg.r][beg.c] = null;
-        return true;
+        return false;   
     }
 
     @Override

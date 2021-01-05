@@ -75,12 +75,10 @@ public class CheckersBoard {
                 (end.r > size - 1) ||
                 (end.c > size - 1) ||
                 (grid[beg.r][beg.c] == null) ||
-                (grid[beg.r][beg.c].type != player.getPlayerType()) ||
+                (grid[beg.r][beg.c].getPlayerType() != player.getPlayerType()) ||
                 (grid[end.r][end.c] != null))
             return false;
 
-        grid[beg.r][beg.c].move(beg, end);
-
-        return true;
+        return grid[beg.r][beg.c].move(beg, end);
     }
 }
