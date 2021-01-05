@@ -6,6 +6,10 @@ public class Player {
     private final PlayerType playerType;
     final Scanner scanner = new Scanner(System.in);
 
+    /**
+     * Reads coordinates as string
+     * @return = array of ints
+     */
     int[] readInts() {
         System.out.print("Put in your input as curRow, curCol, newRow, newCol. ");
         System.out.println("Eg. is you want to move your piece from 5, 0 to 4, 1 then you would put in (5, 0, 4, 1)");

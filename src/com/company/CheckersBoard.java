@@ -4,12 +4,19 @@ public class CheckersBoard {
     final int size = 8;
     final public Token[][] grid = new Token[size][size];
 
+    /**
+     * Constructor. Creates and inits board
+     */
     CheckersBoard() {
         // when the board is created reset the board
         resetBoard();
     }
 
     // prints the board
+
+    /**
+     * Prints board to screen
+     */
     public void printBoard() {
         System.out.print("  ");
         for (int i = 0; i < size; ++i)
@@ -47,6 +54,10 @@ public class CheckersBoard {
     }
 
     // resets the board
+
+    /**
+     * reset board to starting layout
+     */
     public void resetBoard() {
         for (int i = 0; i < size; ++i) {
             for (int j = 0; j < size; ++j) {
@@ -60,7 +71,34 @@ public class CheckersBoard {
         }
     }
 
+    /**
+     * Checks if a player has won
+     * @return true if any player has won, false otherwise
+     */
     public boolean checkWinner() {
+        boolean white = false;
+        boolean black = false;
+        // check if no more pieces are left of either black or white
+        for (int i = 0; i < size; ++i) {
+            for (int j = 0; j < size; ++j) {
+                if (null != grid[i][j]) {
+                    if (grid[i][j].getPlayerType() == Player.PlayerType.White)
+                        white = true;
+                    else if (grid[i][j].getPlayerType() == Player.PlayerType.Black)
+                        black = true;
+                }
+            }
+        }
+        // if there aren't any white pieces left the black wins
+        if (!white) {
+            System.out.println("Black wins");
+            return true;
+        }
+        // if there aren't any black pieces left white wins
+        else if (!black) {
+            System.out.println("White wins");
+            return true;
+        }
         return false;
     }
 

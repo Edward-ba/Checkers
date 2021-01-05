@@ -194,28 +194,4 @@ public class Board {
         return false;
     }
 
-    public boolean checkWinner() {
-        boolean white = false;
-        boolean black = false;
-        // check if no more pieces are left of either black or white
-        for (int i = 0; i < size; ++i) {
-            for (int j = 0; j < size; ++j) {
-                if (grid[i][j] == BoardPiece.White || grid[i][j] == BoardPiece.WhiteKing)
-                    white = true;
-                else if (grid[i][j] == BoardPiece.Black || grid[i][j] == BoardPiece.BlackKing)
-                    black = true;
-            }
-        }
-        // if there aren't any white pieces left the black wins
-        if (!white) {
-            System.out.println("Black wins");
-            return true;
-        }
-        // if there aren't any black pieces left white wins
-        else if (!black) {
-            System.out.println("White wins");
-            return true;
-        }
-        return false;
-    }
 }

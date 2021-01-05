@@ -6,11 +6,19 @@ public class Game {
     Player pb;
     Player pw;
 
+    /**
+     * Constructor
+     * @param pb - Black Player
+     * @param pw - White Player
+     */
     Game(Player pb, Player pw) {
         this.pb = pb;
         this.pw = pw;
     }
 
+    /**
+     * Main play function. Requests white player to move then black player
+     */
     public void play() {
         Player curPlayer = pw; // player white starts first
 
