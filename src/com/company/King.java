@@ -6,6 +6,12 @@ public class King extends Token {
         super(board, type);
     }
 
+    /**
+     *
+     * @param beg
+     * @param end
+     * @return
+     */
     @Override
     public boolean move(Coordinates beg, Coordinates end) {
         Player.PlayerType thisPlayerType = board.grid[beg.r][beg.c].getPlayerType();
@@ -16,41 +22,20 @@ public class King extends Token {
             board.grid[beg.r][beg.c] = null;
             return true;
         }
-        else if (Math.abs(beg.c - end.c) == 2 || Math.abs(beg.r - beg.c) == 2) {
-            if (beg.c < end.c &&
-                    beg.r < end.r &&
-                    board.grid[beg.r - 1][beg.c - 1].getPlayerType() == otherPlayerType) {
-                board.grid[end.r][end.c] = board.grid[beg.r][beg.c];
-                board.grid[beg.r][beg.c] = null;
-                board.grid[beg.r - 1][beg.c - 1] = null;
-                return true;
-            }
-            else if (beg.c < end.c &&
-                    beg.r > end.r &&
-                    board.grid[beg.r + 1][beg.c - 1].getPlayerType() == otherPlayerType) {
-                board.grid[end.r][end.c] = board.grid[beg.r][beg.c];
-                board.grid[beg.r][beg.c] = null;
-                board.grid[beg.r - 1][beg.c - 1] = null;
-                return true;
-            }
-            else if (beg.c > end.c &&
-                    beg.r < end.r &&
-                    board.grid[beg.r - 1][beg.c + 1].getPlayerType() == otherPlayerType) {
-                board.grid[end.r][end.c] = board.grid[beg.r][beg.c];
-                board.grid[beg.r][beg.c] = null;
-                board.grid[beg.r - 1][beg.c - 1] = null;
-                return true;
-            }
-            else if (beg.c > end.c &&
-                    beg.r > end.r &&
-                    board.grid[beg.r + 1][beg.c + 1].getPlayerType() == otherPlayerType) {
-                board.grid[end.r][end.c] = board.grid[beg.r][beg.c];
-                board.grid[beg.r][beg.c] = null;
-                board.grid[beg.r - 1][beg.c - 1] = null;
-                return true;
-            }
+
+        // Kill Code
+        Coordinates mid = new Coordinates((beg.r + end.r) / 2, (beg.c + end.c) / 2);
+        if (Math.abs(beg.c - end.c) == 2 &&
+                Math.abs(beg.r - end.r) == 2 &&
+                board.grid[mid.r][mid.c].getPlayerType() == otherPlayerType) {
+
+            // Check White pawns are are going south and black players are going north
+            board.grid[end.r][end.c] = board.grid[beg.r][beg.c];
+            board.grid[beg.r][beg.c] = null;
+            board.grid[mid.r][mid.c] = null;
+            return true;
         }
-        return false;   
+        return false;
     }
 
     @Override

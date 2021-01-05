@@ -1,11 +1,22 @@
 package com.company;
 
 public class Pawn extends Token {
+    /**
+     * constructor
+     * @param board
+     * @param type
+     */
     Pawn(CheckersBoard board, Player.PlayerType type)
     {
         super(board, type);
     }
 
+    /**
+     * Move & Kill logic for Pawn
+     * @param beg begin location
+     * @param end end location
+     * @return Whether or not it works
+     */
     @Override
     public boolean move(Coordinates beg, Coordinates end) {
         int mult = Player.PlayerType.Black == type ? 1 : -1;
@@ -23,42 +34,19 @@ public class Pawn extends Token {
         }
 
         // kill code
-        else if (Math.abs(beg.c - end.c) == 2 && Math.abs(beg.r - end.r) == 2) {
-            // South-West
-            if (beg.c < end.c &&
-                    beg.r < end.r &&
-                    board.grid[beg.r + 1][beg.c + 1].getPlayerType() == otherPlayerType &&
-                    thisPlayerType == Player.PlayerType.White) {
+        // get location of enemy piece
+        Coordinates mid = new Coordinates((beg.r + end.r) / 2, (beg.c + end.c) / 2);
+        if (Math.abs(beg.c - end.c) == 2 &&
+                Math.abs(beg.r - end.r) == 2 &&
+                board.grid[mid.r][mid.c].getPlayerType() == otherPlayerType) {
+
+            // Check White pawns are are going south and black players are going north
+            if ((beg.r < end.r && thisPlayerType == Player.PlayerType.White) ||
+                    (beg.r > end.r && thisPlayerType == Player.PlayerType.Black))
+            {
                 board.grid[end.r][end.c] = board.grid[beg.r][beg.c];
                 board.grid[beg.r][beg.c] = null;
-                board.grid[beg.r + 1][beg.c + 1] = null;
-                return true;
-            }
-            else if (beg.c < end.c &&
-                    beg.r > end.r &&
-                    board.grid[beg.r - 1][beg.c + 1].getPlayerType() == otherPlayerType &&
-                    thisPlayerType == Player.PlayerType.Black) {
-                board.grid[end.r][end.c] = board.grid[beg.r][beg.c];
-                board.grid[beg.r][beg.c] = null;
-                board.grid[beg.r - 1][beg.c + 1] = null;
-                return true;
-            }
-            else if (beg.c > end.c &&
-                    beg.r < end.r &&
-                    board.grid[beg.r + 1][beg.c - 1].getPlayerType() == otherPlayerType &&
-                    thisPlayerType == Player.PlayerType.White) {
-                board.grid[end.r][end.c] = board.grid[beg.r][beg.c];
-                board.grid[beg.r][beg.c] = null;
-                board.grid[beg.r + 1][beg.c - 1] = null;
-                return true;
-            }
-            else if (beg.c > end.c &&
-                    beg.r > end.r &&
-                    board.grid[beg.r - 1][beg.c - 1].getPlayerType() == otherPlayerType &&
-                    thisPlayerType == Player.PlayerType.Black) {
-                board.grid[end.r][end.c] = board.grid[beg.r][beg.c];
-                board.grid[beg.r][beg.c] = null;
-                board.grid[beg.r - 1][beg.c - 1] = null;
+                board.grid[mid.r][mid.c] = null;
                 return true;
             }
         }
