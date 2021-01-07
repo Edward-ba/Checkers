@@ -59,4 +59,9 @@ public class Pawn extends Token {
         else
             return "b";
     }
+
+    @Override
+    public int score() {
+        return 1;
+    }
 }

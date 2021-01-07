@@ -15,7 +15,7 @@ public class King extends Token {
     @Override
     public boolean move(Coordinates beg, Coordinates end) {
         Player.PlayerType thisPlayerType = board.grid[beg.r][beg.c].getPlayerType();
-        Player.PlayerType otherPlayerType = board.grid[beg.r][beg.c].getPlayerType();
+        Player.PlayerType otherPlayerType = thisPlayerType == Player.PlayerType.Black ? Player.PlayerType.White : Player.PlayerType.Black;
         // simple move
         if (Math.abs(beg.c - end.c) == 1 || Math.abs(beg.r - beg.c) == 1) {
             board.grid[end.r][end.c] = board.grid[beg.r][beg.c];
@@ -44,5 +44,10 @@ public class King extends Token {
             return "w";
         else
             return "b";
+    }
+
+    @Override
+    public int score() {
+        return 5;
     }
 }

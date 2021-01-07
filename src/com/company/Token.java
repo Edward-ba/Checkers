@@ -12,6 +12,8 @@ abstract public class Token {
 
     public abstract boolean move(Coordinates beg, Coordinates end);
     public abstract String print();
+    public abstract int score();
+
 
     public Player.PlayerType getPlayerType()
     {
