@@ -1,4 +1,6 @@
-# Checkers
+
+
+<PRE>
 1. This is checkers.
 2. White goes first.
 4. The only way to win is by killing all of the other players pieces.
@@ -21,3 +23,4 @@
 7 | b |   | b |   | b |   | b |   | 
   - - - - - - - - - - - - - - - - -
 Put in your input as curRow, curCol, newRow, newCol. Eg. is you want to move your piece from 5, 0 to 4, 1 then you would put in (5, 0, 4, 1)
+</PRE>
